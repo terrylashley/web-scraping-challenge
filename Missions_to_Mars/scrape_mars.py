@@ -86,4 +86,104 @@ def scrape_images():
         
         browser.quit()
         
+#Mars Weather
+def scrape_mars_weather():
+    try:
+        
+        #initiate the browser
+        browser = browser_setup()
+        
+        #Grab the latest weather report tweet from the mars twitter account
+        twitter_weather_url= 'https://twitter.com/MarsWxReport/status/1235261528946937856' 
+        browser.visit(twitter_weather_url)
+        
+        #create an HTML object to parse with Beautiful Soup
+        html_twitter_weather= browser.html
+
+        #parse object with Beautiful Soup
+        soup = bs(html_twitter_weather, 'html.parser')
+        
+        #Grab the latest weather tweet
+        latest_weather_tweet = soup.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-1blvdjr r-16dba41 r-ad9z0x r-bcqeeo r-19yat4t r-bnwqim r-qvutc0').text
+        
+        #Add the weather tweet to the dictionary
+        mars_data['latest_weather_tweet'] = latest_weather_tweet
+        
+        return mars_data
+    finally:
+        
+        browser.quit()
+        
+
+#Mars Facts
+#Scrape table containing facts about planet mars using pandas
+def scrape_mars_facts():
+    
+    
+        #place URL in variable to be called by pandas
+        mars_facts_url = 'https://space-facts.com/mars/'
+
+        #Use pandas to parse the URL
+        mars_facts = pd.read_html(mars_facts_url)
+        
+        #Index into the correct dataframe
+        mars_facts_df = mars_facts[0]
+        
+        #Change titles 
+        mars_facts_df.columns = ['Perameter', 'Facts']
+        
+        #prep for HTML page
+        mars_facts_df.set_index('Perameter', inplace=True)
+        
+        #Save to HTML
+        mars_facts_df.to_html("mars_facts_df.html")
+        
+        mars_facts = mars_facts_df.to_html()
+        
+        #Add mars facts to the dictionary
+        mars_data['mars_facts'] = mars_facts
+        
+        return mars_data
+    
+    
+    #Mars Hemispheres
+    def scrape_mars_hemispheres():
+        try:
+            
+            #initiate the browser
+            browser = browser_setup()
+            
+            #Grab high resolution images for each Mars Hemisphere
+            hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+            browser.visit(hemispheres_url)
+
+            #create HTML object to be parsed
+            hemispheres_html = browser.html
+
+            #parse HTML with Beautiful Soup
+            soup = bs(hemispheres_html, 'html.parser')
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
