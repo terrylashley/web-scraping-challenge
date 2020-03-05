@@ -7,7 +7,7 @@ import requests
 
 #Set up the browser
 def browser_setup():
-    
+    # @NOTE: Replace the path with your actual path to the chromedriver NOT DONE YET
     executable_path = {'executable_path': 'chromedriver.exe'}
     browser = Browser('chrome', **executable_path, headless=False)
     
