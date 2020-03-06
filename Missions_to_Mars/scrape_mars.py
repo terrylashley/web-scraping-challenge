@@ -146,61 +146,61 @@ def scrape_mars_facts():
         return mars_data
     
     
-    #Mars Hemispheres
-    def scrape_mars_hemispheres():
-        try:
-            
-            #initiate the browser
-            browser = browser_setup()
-            
-            #Grab high resolution images for each Mars Hemisphere
-            hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-            browser.visit(hemispheres_url)
+#Mars Hemispheres
+def scrape_mars_hemispheres():
+    try:
+        
+        #initiate the browser
+        browser = browser_setup()
+        
+        #Grab high resolution images for each Mars Hemisphere
+        hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+        browser.visit(hemispheres_url)
 
-            #create HTML object to be parsed
-            hemispheres_html = browser.html
+        #create HTML object to be parsed
+        hemispheres_html = browser.html
 
-            #parse HTML with Beautiful Soup
-            soup = bs(hemispheres_html, 'html.parser')
-            
-            #Grab the items that has the hemispheres information
-            items = soup.find_all('div', class_='item')
+        #parse HTML with Beautiful Soup
+        soup = bs(hemispheres_html, 'html.parser')
+        
+        #Grab the items that has the hemispheres information
+        items = soup.find_all('div', class_='item')
 
-            #Hemisphere URL list
-            hemisphere_pic_urls = []
+        #Hemisphere URL list
+        hemisphere_pic_urls = []
 
-            #Plase main url in variable to combine later
-            hemisphere_url = 'https://astrogeology.usgs.gov'
-            
-            #create a loop  to grab each link and create a dictoinary 
-            for i in items:
-                #grab the title
-                title = i.find('h3').text
-    
-                #website link for images
-                img_url = i.find('a', class_='itemLink product-item')['href']
-    
-                #Visit the link that contains the full image using browser
-                browser.visit(hemisphere_url + img_url)
-    
-                #make html object of hemisphere
-                img_html = browser.html
-    
-                #use beautiful soup to parse each hemisphere
-                soup = bs(img_html, 'html.parser')
-    
-                #grab the full image data
-                img_url = hemisphere_url + soup.find('img', class_='wide-image')['src']
-    
-                hemisphere_pic_urls.append({'title':title, 'img_url':img_url})
-            
-            #add to dictionary
-            mars_data['hemisphere_pic_urls'] = hemisphere_pic_urls
-            
-            return mars_data
-        finally:
-            
-            browser.quit()
+        #Plase main url in variable to combine later
+        hemisphere_url = 'https://astrogeology.usgs.gov'
+        
+        #create a loop  to grab each link and create a dictoinary 
+        for i in items:
+            #grab the title
+            title = i.find('h3').text
+
+            #website link for images
+            img_url = i.find('a', class_='itemLink product-item')['href']
+
+            #Visit the link that contains the full image using browser
+            browser.visit(hemisphere_url + img_url)
+
+            #make html object of hemisphere
+            img_html = browser.html
+
+            #use beautiful soup to parse each hemisphere
+            soup = bs(img_html, 'html.parser')
+
+            #grab the full image data
+            img_url = hemisphere_url + soup.find('img', class_='wide-image')['src']
+
+            hemisphere_pic_urls.append({'title':title, 'img_url':img_url})
+        
+        #add to dictionary
+        mars_data['hemisphere_pic_urls'] = hemisphere_pic_urls
+        
+        return mars_data
+    finally:
+        
+        browser.quit()
         
         
         
