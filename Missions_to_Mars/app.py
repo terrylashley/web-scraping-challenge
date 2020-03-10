@@ -17,15 +17,12 @@ mongo = PyMongo(app)
 
 
 
-
-
-
 #Create in dex route that makes the html template
 @app.route("/")
 def home():
     
     #locate the Mars data
-    mars_data = mongo.db.mars_data.find_one()
+    mars_data = mongo.db.mars.find_one()
     
     #Return Template and data
     return render_template("index.html", mars_data=mars_data)

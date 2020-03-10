@@ -17,7 +17,7 @@
         <!-- Set up the Mars title and button to scrape new data-->
         <div class="jumbotron" align="center">
             <h1 align="center" class="display-3">Mission To Mars</h1>
-            <a class="btn btn-primary btn-lg " href="#!" role="button">Scrape New Data</a>
+            <a class="btn btn-primary btn-lg " href="/scrape" role="button">Scrape New Data</a>
         </div>
 
         <!-- Latest Info and Title -->
@@ -61,6 +61,22 @@
         <!-- Template for Hemisphere images-->
         <h3 style="text-align: center;">Mars Hemispheres</h3>
             <div class="card-deck">    
+            <hr>
+                <div class="col-md-12">
+                <div class="row">
+                    {% for item in mars_data.hemisphere_pic_urls %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" style = "width: 100%;" src="{{ item.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
 
 
 
