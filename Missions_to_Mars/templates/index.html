@@ -7,21 +7,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--CSS Link-->
+    <link rel="stylesheet" type="text/css" href="indexstyle.css">
 </head>
 
-<body>
+<body> 
+    <div class"container">
 
-<div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
-                  calling extra attention to featured content or information.</p>
-  <hr class="my-2">
-  <p>It uses utility classes for typography and
-     spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#!" role="button">Some action</a>
-  </p>
-</div>
+        <!-- Set up the Mars title and button to scrape new data-->
+        <div class="jumbotron" align="center">
+            <h1 align="center" class="display-3">Mission To Mars</h1>
+            <a class="btn btn-primary btn-lg " href="#!" role="button">Scrape New Data</a>
+        </div>
+
+        <!-- Latest Info and Title -->
+        <div class="container">
+            <h2 style="font-weight: bold">Latest Mars News</h2>
+            <h4>{{ mars_data.news_title}}</h4>
+            <p>{{mars_data.news_paragraph}}</p>
+        </div>
+
+        <!--Container for Feature, Facts, Weather-->
+        <div class="container">
+            <div class="row">
+                <!--Feature Image Left-->
+                <div class="col-lg-8 col-md-8">
+                    <h3 style="font-weight: bold">Featured Mars Image</h3>
+                    <img src="{{mars_data.featured_image_url}}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+
+                <!-- Weather Card and Mars Facts-->
+                <div class="col-lg-4 col-md-4">
+
+                    <!--Weather Card-->
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h6 style="font-weight: bold">Current Weather on Mars</h6>
+                            <p class="card-text">{{mars_data.latest_weather_tweet}}
+                        </div>
+
+                        <!--Mars Facts Table-->
+                        <br>
+                        <h3 style="font-weight: bold">Mars Facts</h3>
+                        <div syle="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65;">
+                            {{mars_data.mars_facts|safe}}
+                        </div>
+
+                    </div> <!-- Close Card Class-->
+                </div> <!--Close weather card col-lg-4 -->
+            </div> <!-- close Row Feature, Facts, Weather-->
+        </div> <!-- close Feature, Facts, Weather-->
+
+        <!-- Template for Hemisphere images-->
+        <h3 style="text-align: center;">Mars Hemispheres</h3>
+            <div class="card-deck">    
+
+
+
+
+
+
+    
+       
+
+    </div> <!--End Tag Main Container-->
+
+
+
+
+
    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

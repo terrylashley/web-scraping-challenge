@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
 
+
 #Create an instance of the Flask app
 app = Flask(__name__)
 
@@ -10,6 +11,12 @@ app = Flask(__name__)
 #NOT SURE IF THIS FIRST LINE IS SET UP CORRECTLY--------------------
 app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
 mongo = PyMongo(app)
+
+#mongo.db.mars_data.insert_many(mars_data)
+
+
+
+
 
 
 
