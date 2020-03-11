@@ -80,6 +80,7 @@ def scrape():
     latest_weather_tweet = t.contents[0]
     
     
+    
     #Add the weather tweet to the dictionary
     mars_data['latest_weather_tweet'] = latest_weather_tweet
     
